@@ -1,0 +1,5 @@
+{
+  "name": "Neon Breakout",
+  "description": "A classic brick-breaking arcade game with a vibrant neon aesthetic. Destroy blocks, clear levels, and aim for the high score.",
+  "requestFramePermissions": []
+}
