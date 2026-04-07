@@ -5,11 +5,16 @@ import {defineConfig, loadEnv} from 'vite';
 
 export default defineConfig(({mode}) => {
   const env = loadEnv(mode, '.', '');
+  
+  // GitHub Pages用のベースパス自動設定
+  // GitHub Actions環境では GITHUB_REPOSITORY が "username/repo-name" の形式で設定されます
+  const repoName = env.GITHUB_REPOSITORY ? `/${env.GITHUB_REPOSITORY.split('/')[1]}/` : './';
+
   return {
-    base: './',
+    base: repoName,
     plugins: [react(), tailwindcss()],
     define: {
-      'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),
+      'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY || ''),
     },
     resolve: {
       alias: {
